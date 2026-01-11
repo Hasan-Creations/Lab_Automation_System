@@ -31,6 +31,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::delete('/requirements/{id}', [\App\Http\Controllers\Admin\ProductRequirementController::class, 'destroy'])->name('requirements.destroy');
     Route::get('/search', [\App\Http\Controllers\User\SearchController::class, 'index'])->name('search');
     Route::get('/view-status', [App\Http\Controllers\User\StatusController::class, 'index'])->name('view-status');
+    Route::resource('product-types', \App\Http\Controllers\Admin\ProductTypeController::class);
 });
 
 // User Routes

@@ -17,14 +17,19 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.product-types.*') ? 'active' : '' }}" href="{{ route('admin.product-types.index') }}">
+                <i class="fas fa-tags me-2"></i> Product Types
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.requirements.*') ? 'active' : '' }}" href="{{ route('admin.requirements.index') }}">
                 <i class="fas fa-project-diagram me-2"></i> Test Mapping
             </a>
         </li>
         {{-- <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.test-types.*') ? 'active' : '' }}" href="{{ route('admin.test-types.index') }}">
-                <i class="fas fa-file-contract me-2"></i> Protocols
-            </a>
+        <i class="fas fa-file-contract me-2"></i> Protocols
+        </a>
         </li> --}}
         <!-- <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}" href="{{ route('admin.reports.index') }}">
