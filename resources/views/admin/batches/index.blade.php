@@ -63,14 +63,23 @@
                             <a href="{{ route('admin.batches.show', $batch->id) }}" class="btn btn-sm btn-outline-primary px-3">
                                 <i class="fas fa-eye me-1"></i> Details
                             </a>
+                            
                             @if($batch->currentRevision && ($batch->currentRevision->status == 'FAILED' || $batch->currentRevision->status == 'CPRI_REJECTED'))
-                            <form action="{{ route('admin.batches.remake', $batch->id) }}" method="POST" class="d-inline ms-2">
+                            <form action="{{ route('admin.batches.remake', $batch->id) }}" method="POST" class="d-inline ms-1">
                                 @csrf
-                                <button type="submit" class="btn btn-sm btn-outline-danger px-3" onclick="return confirm('Send for remaking? This will increment revision.')">
+                                <button type="submit" class="btn btn-sm btn-outline-warning px-3" onclick="return confirm('Send for remaking? This will increment revision.')">
                                     <i class="fas fa-redo me-1"></i> Remake
                                 </button>
                             </form>
                             @endif
+
+                            <form action="{{ route('admin.batches.destroy', $batch->id) }}" method="POST" class="d-inline ms-1">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger px-3" onclick="return confirm('Permanently remove this batch and all its revision history?')">
+                                    <i class="fas fa-trash-alt me-1"></i> Delete
+                                </button>
+                            </form>
                         </div>
                     </td>
                 </tr>
