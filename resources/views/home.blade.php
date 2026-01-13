@@ -2,52 +2,47 @@
 
 @section('content')
 
-<!-- ======= HERO SECTION ======= -->
-<section class="hero-section py-5 overflow-hidden border-bottom bg-light bg-opacity-50">
+<!-- Hero Section -->
+<section class="py-5 bg-light border-bottom">
     <div class="container py-lg-5">
         <div class="row align-items-center py-5">
             <div class="col-lg-6">
-                <div class="mb-4">
-                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-2 small fw-bold">
-                        Built for Electronics Labs
-                    </span>
-                </div>
-                <h1 class="display-4 fw-bold mb-4" style="font-family: 'Outfit', sans-serif; color: #0f172a;">
-                    Organize your lab testing with <span class="text-primary">SRS.</span>
-                </h1>
-                <p class="lead text-secondary mb-5" style="font-size: 1.2rem; max-width: 550px;">
-                    Keep track of every resistor, capacitor, and circuit test. A straightforward tool for lab managers and technicians to record results and generate reports without the paperwork.
-                </p>
+                <header class="mb-5">
+                    <span class="text-uppercase tracking-widest fw-bold text-primary small mb-3 d-block">Tools for Electronics Labs</span>
+                    <h1 class="display-5 fw-bold mb-4" style="font-family: 'Outfit', sans-serif;">Manage your laboratory data efficiently.</h1>
+                    <p class="lead text-secondary" style="max-width: 500px;">Record resistor and capacitor tests, track component batches, and generate standardized reports for your team.</p>
+                </header>
                 <div class="d-flex flex-wrap gap-3">
-                    <a href="{{ route('login') }}" class="btn btn-primary btn-lg px-4 py-3 fw-bold">
-                        Open Control Panel
-                    </a>
-                    <a href="#features" class="btn btn-outline-secondary btn-lg px-4 py-3 fw-semibold">
-                        Learn how it works
+                    <a href="{{ route('login') }}" class="btn btn-primary btn-lg px-4 py-3 fw-bold shadow-sm">
+                        Access Control Console
                     </a>
                 </div>
             </div>
             <div class="col-lg-6 d-none d-lg-block">
-                <div class="ps-lg-5">
-                    <div class="card border-0 shadow-lg p-4 rounded-4" style="background: #ffffff;">
-                        <div class="d-flex align-items-center gap-3 mb-4">
-                            <div class="bg-success bg-opacity-10 text-success p-2 rounded-circle">
-                                <i class="fas fa-check"></i>
+                <div class="ps-lg-5 text-center">
+                    <div class="p-5 bg-white border rounded-4 shadow-sm text-start" style="max-width: 450px; margin: auto;">
+                        <h6 class="fw-bold mb-4 text-muted small text-uppercase">Recent Activity</h6>
+                        <div class="list-group list-group-flush small">
+                            <div class="list-group-item px-0 py-3 d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="mb-0 fw-semibold">Batch #942 Completed</p>
+                                    <small class="text-muted">Capacitor Testing</small>
+                                </div>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle">Pass</span>
                             </div>
-                            <h6 class="mb-0 fw-bold">Daily Test Summary</h6>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="text-secondary small">Switch Gear Batch #42</span>
-                                <span class="badge bg-success small">Passed</span>
+                            <div class="list-group-item px-0 py-3 d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="mb-0 fw-semibold">Daily Report Exported</p>
+                                    <small class="text-muted">Admin User</small>
+                                </div>
+                                <i class="fas fa-file-pdf text-muted"></i>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="text-secondary small">Capacitor Batch #85</span>
-                                <span class="badge bg-danger small">Failed</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="text-secondary small">Fuse Batch #12</span>
-                                <span class="badge bg-warning text-dark small">Pending</span>
+                            <div class="list-group-item px-0 py-3 d-flex justify-content-between align-items-center border-0">
+                                <div>
+                                    <p class="mb-0 fw-semibold">Batch #941 Pending Review</p>
+                                    <small class="text-muted">Station 4</small>
+                                </div>
+                                <span class="badge bg-warning-subtle text-warning border border-warning-subtle">Review</span>
                             </div>
                         </div>
                     </div>
@@ -57,134 +52,91 @@
     </div>
 </section>
 
-<!-- ======= FEATURES SECTION ======= -->
+<!-- Core Operations -->
 <section id="features" class="py-5">
-    <div class="container py-lg-5 text-center">
-        <div class="max-w-700 mx-auto mb-5 pb-lg-4">
-            <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif;">Everything you need to manage your lab.</h2>
-            <p class="text-secondary">We focus on the essential tasks that take up your time every day.</p>
+    <div class="container py-lg-5">
+        <div class="mb-5">
+            <h2 class="fw-bold" style="font-family: 'Outfit', sans-serif;">System Overview</h2>
+            <p class="text-secondary">Straightforward operations for daily lab management.</p>
         </div>
 
-        <div class="row g-4 text-start">
+        <div class="row g-4">
             <div class="col-md-4">
-                <div class="p-4 h-100 rounded-4 border bg-white shadow-sm transition-hover">
-                    <div class="icon-box-small mb-4 text-primary">
-                        <i class="fas fa-edit fs-3"></i>
-                    </div>
-                    <h5 class="fw-bold mb-3">Test Recording</h5>
-                    <p class="text-secondary small">Quickly enter test results for different product categories. Record passes, fails, and specific measurements in seconds.</p>
+                <div class="p-4 border rounded-3 h-100 bg-white shadow-sm">
+                    <i class="fas fa-pencil-alt text-primary mb-3 fs-4"></i>
+                    <h5 class="fw-bold mb-2">Test Recording</h5>
+                    <p class="text-secondary small mb-0">Record results for resistors, capacitors, and complex components with standardized input fields to ensure data accuracy.</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="p-4 h-100 rounded-4 border bg-white shadow-sm transition-hover">
-                    <div class="icon-box-small mb-4 text-success">
-                        <i class="fas fa-boxes fs-3"></i>
-                    </div>
-                    <h5 class="fw-bold mb-3">Batch Management</h5>
-                    <p class="text-secondary small">Organize your components into batches. Track the status of each revision and keep a clear history of what's been tested.</p>
+                <div class="p-4 border rounded-3 h-100 bg-white shadow-sm">
+                    <i class="fas fa-layer-group text-primary mb-3 fs-4"></i>
+                    <h5 class="fw-bold mb-2">Batch Tracking</h5>
+                    <p class="text-secondary small mb-0">Monitor the lifecycle of every component batch. Track revisions, re-tests, and current status from a single view.</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="p-4 h-100 rounded-4 border bg-white shadow-sm transition-hover">
-                    <div class="icon-box-small mb-4 text-info">
-                        <i class="fas fa-file-alt fs-3"></i>
-                    </div>
-                    <h5 class="fw-bold mb-3">Quick Reporting</h5>
-                    <p class="text-secondary small">Generate performance reports at the click of a button. Filter by date, product type, or technician to see how the lab is performing.</p>
+                <div class="p-4 border rounded-3 h-100 bg-white shadow-sm">
+                    <i class="fas fa-clipboard-check text-primary mb-3 fs-4"></i>
+                    <h5 class="fw-bold mb-2">Integrity Control</h5>
+                    <p class="text-secondary small mb-0">Built-in safeguards and role-based access ensure that laboratory standards are maintained across all test results.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ======= PRACTICAL VALUES ======= -->
-<section class="py-5 bg-light border-top border-bottom">
-    <div class="container py-lg-5">
-        <div class="row align-items-center justify-content-between">
-            <div class="col-lg-5 mb-4 mb-lg-0">
-                <h3 class="fw-bold mb-4" style="font-family: 'Outfit', sans-serif;">Get rid of the confusion.</h3>
-                <div class="d-flex gap-3 mb-4">
-                    <div class="text-primary mt-1"><i class="fas fa-check-circle"></i></div>
-                    <div>
-                        <h6 class="fw-bold mb-1">Clear Traceability</h6>
-                        <p class="text-secondary small mb-0">Know exactly who tested what and when. No more searching through old paper logs or messy spreadsheets.</p>
-                    </div>
-                </div>
-                <div class="d-flex gap-3 mb-4">
-                    <div class="text-primary mt-1"><i class="fas fa-check-circle"></i></div>
-                    <div>
-                        <h6 class="fw-bold mb-1">Standardized Workflow</h6>
-                        <p class="text-secondary small mb-0">Ensure every technician follows the same testing protocols for every product type.</p>
-                    </div>
-                </div>
-                <div class="d-flex gap-3">
-                    <div class="text-primary mt-1"><i class="fas fa-check-circle"></i></div>
-                    <div>
-                        <h6 class="fw-bold mb-1">Faster Turnaround</h6>
-                        <p class="text-secondary small mb-0">Streamline the process from component arrival to final quality approval.</p>
-                    </div>
-                </div>
+<!-- Values Section -->
+<section class="py-5 border-top bg-light">
+    <div class="container py-lg-4">
+        <div class="row align-items-center justify-content-between py-5">
+            <div class="col-lg-5">
+                <h2 class="fw-bold mb-4" style="font-family: 'Outfit', sans-serif;">Built for technicians, by design.</h2>
+                <ul class="list-unstyled space-y-4">
+                    <li class="d-flex gap-3 align-items-start">
+                        <i class="fas fa-check text-primary mt-1"></i>
+                        <div>
+                            <p class="mb-0 fw-semibold">Eliminate Manual Logs</p>
+                            <p class="text-secondary small">Reduce paperwork and transcription errors with direct digital entry.</p>
+                        </div>
+                    </li>
+                    <li class="d-flex gap-3 align-items-start mt-4">
+                        <i class="fas fa-check text-primary mt-1"></i>
+                        <div>
+                            <p class="mb-0 fw-semibold">Instant Retrieval</p>
+                            <p class="text-secondary small">Search and find any historical test result by batch ID or product type instantly.</p>
+                        </div>
+                    </li>
+                    <li class="d-flex gap-3 align-items-start mt-4">
+                        <i class="fas fa-check text-primary mt-1"></i>
+                        <div>
+                            <p class="mb-0 fw-semibold">Secure Reporting</p>
+                            <p class="text-secondary small">Standardized PDF reports that are audit-ready and easy to share.</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
             <div class="col-lg-6">
-                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1200" class="img-fluid rounded-4 shadow" alt="Electronic Lab Environment">
+                <div class="rounded-4 overflow-hidden border shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef01091557d4?auto=format&fit=crop&q=80&w=1000" class="img-fluid" alt="Data Center Visualization">
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ======= CTA SECTION ======= -->
-<section class="py-5 text-center">
+<!-- Final Call to Action -->
+<section class="py-5 text-center bg-white border-top">
     <div class="container py-5">
-        <div class="max-w-700 mx-auto">
-            <h2 class="fw-bold mb-4" style="font-family: 'Outfit', sans-serif;">Ready to simplify your lab?</h2>
-            <p class="text-secondary lead mb-5">Log in today to start organizing your testing workflow.</p>
-            <a href="{{ route('login') }}" class="btn btn-primary btn-lg px-5 py-3 fw-bold rounded-3">Access Lab Console</a>
-        </div>
+        <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif;">Get started today.</h2>
+        <p class="text-secondary mb-5">Login with your credentials to access the laboratory console.</p>
+        <a href="{{ route('login') }}" class="btn btn-primary btn-lg px-5 py-3 fw-bold rounded-3">Login to Dashboard</a>
     </div>
 </section>
 
 <style>
-    .max-w-700 { max-width: 700px; }
-    .transition-hover:hover {
-        transform: translateY(-4px);
-        border-color: #2563eb !important;
-    }
-    .transition-hover {
-        transition: all 0.2s ease;
-    }
-
-    /* Scaling for 1280x1024 and similar desktop resolutions */
-    @media (max-width: 1400px) {
-        .display-4 {
-            font-size: 2.75rem !important;
-        }
-        .hero-section .py-lg-5 {
-            padding-top: 2rem !important;
-            padding-bottom: 2rem !important;
-        }
-        .hero-section .py-5 {
-            padding-top: 1.5rem !important;
-            padding-bottom: 1.5rem !important;
-        }
-        .hero-section p.lead {
-            font-size: 1.1rem !important;
-            margin-bottom: 2rem !important;
-        }
-    }
-
-    /* General responsive padding adjustments */
-    @media (max-width: 991px) {
-        .hero-section {
-            text-align: center;
-        }
-        .hero-section p.lead {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .hero-section .d-flex {
-            justify-content: center;
-        }
-    }
+    .tracking-widest { letter-spacing: 0.1em; }
+    .extra-small { font-size: 0.7rem; }
 </style>
 
 @endsection

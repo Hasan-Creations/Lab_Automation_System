@@ -1,14 +1,16 @@
 <div class="sidebar">
-    <div class="sidebar-header px-4 py-4 d-flex align-items-center gap-3">
-        <div style="background: var(--srs-primary, #2563eb); padding: 8px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;">
-            <i class="fas fa-layer-group text-white fs-5"></i>
+    <div class="sidebar-header d-flex align-items-center gap-3">
+        <div style="background: var(--srs-primary); padding: 8px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);">
+            <i class="fas fa-microchip text-white fs-5"></i>
         </div>
         <div class="brand-text-container">
-            <h5 class="mb-0 fw-bold font-outfit text-white tracking-widest" style="font-size: 1.1rem;">SRS</h5>
-            <small class="text-secondary tracking-widest" style="font-size: 0.65rem; text-uppercase;">Lab Automation</small>
+            <h5 class="mb-0 fw-bold text-white font-outfit" style="font-size: 1.1rem; letter-spacing: -0.5px;">SRS</h5>
+            <div class="text-primary fw-bold" style="font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px;">Control Console</div>
         </div>
     </div>
-    <ul class="nav flex-column mt-2">
+
+    <div class="sidebar-label"></div>
+    <ul class="nav flex-column">
         @if(auth()->user()->user_type == 'admin')
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
@@ -102,45 +104,62 @@
         position: fixed;
         left: 0;
         top: 0;
-        padding: 20px 20px 20px 20px;
+        padding: 0;
         z-index: 1000;
         font-family: 'Inter', sans-serif;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .sidebar-header {
+        padding: 30px 24px;
+        background: rgba(255, 255, 255, 0.02);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        margin-bottom: 20px;
     }
 
     .sidebar .nav-link {
         color: #94a3b8;
-        padding: 12px 18px;
-        border-radius: 12px;
-        margin-bottom: 6px;
+        padding: 12px 24px;
+        margin: 0 12px 4px 12px;
+        border-radius: 8px;
         font-weight: 500;
+        font-size: 0.875rem;
         transition: all 0.2s ease;
         display: flex;
         align-items: center;
-        letter-spacing: -0.01em;
-    }
-
-    .sidebar h6,
-    .sidebar .brand-text {
-        font-family: 'Outfit', sans-serif;
-        text-transform: uppercase;
-        font-size: 0.75rem;
-        letter-spacing: 0.1em;
-        color: #475569;
-        margin: 20px 0 10px 15px;
+        border: 1px solid transparent;
     }
 
     .sidebar .nav-link:hover {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.03);
         color: white;
+        border-color: rgba(255, 255, 255, 0.05);
     }
 
     .sidebar .nav-link.active {
-        background: #3b82f6;
+        background: var(--srs-primary);
         color: white;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
     }
 
     .sidebar .nav-link i {
-        width: 24px;
+        width: 20px;
+        margin-right: 12px;
+        font-size: 1rem;
+        opacity: 0.7;
+    }
+
+    .sidebar .nav-link.active i {
+        opacity: 1;
+    }
+
+    .sidebar-label {
+        padding: 20px 24px 10px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #475569;
     }
 
     .main-content {

@@ -10,36 +10,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-soft: #e0e7ff;
-            --danger-soft: #fee2e2;
-            --success-soft: #dcfce7;
-            --slate-800: #1e293b;
-            --slate-600: #475569;
+            --srs-primary: #2563eb;
+            --srs-primary-hover: #1d4ed8;
+            --srs-bg: #f1f5f9;
+            --srs-surface: #ffffff;
+            --srs-border: #e2e8f0;
+            --srs-dark: #0f172a;
+            --srs-gray-500: #64748b;
+            --srs-gray-600: #475569;
+            --srs-card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f1f5f9;
-            color: var(--slate-800);
+            background: var(--srs-bg);
+            color: var(--srs-dark);
             -webkit-font-smoothing: antialiased;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        .display-font {
+        h1, h2, h3, h4, h5, h6, .display-font {
             font-family: 'Outfit', sans-serif;
             letter-spacing: -0.02em;
+            color: var(--srs-dark);
         }
 
         .card-modern {
-            background: white;
-            border-radius: 24px;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            background: var(--srs-surface);
+            border-radius: 12px;
+            border: 1px solid var(--srs-border);
+            box-shadow: var(--srs-card-shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-modern:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
         .main-content {
@@ -48,7 +52,23 @@
             min-height: 100vh;
         }
 
-        /* Add other global styles here */
+        /* Technical Typography */
+        .text-technical {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.65rem;
+            color: var(--srs-gray-500);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 991.98px) {
+            .main-content {
+                margin-left: 0;
+                padding: 90px 20px 20px 20px;
+            }
+        }
     </style>
 </head>
 
