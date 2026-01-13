@@ -9,8 +9,9 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\User\DashboardController as UserDashboard;
 use App\Http\Controllers\User\TestController;
 
-// Login Routes
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+// Public Routes
+Route::get('/', function () { return view('home'); })->name('home');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 

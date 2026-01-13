@@ -8,13 +8,33 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    // show login box
+    /**
+     * Centralized redirection logic based on user roles
+     */
+    protected function redirectUser($user)
+    {
+        if ($user->user_type == 'admin') {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return redirect()->route('user.dashboard');
+        }
+    }
+
+    /**
+     * Show the login form
+     */
     public function showLoginForm()
     {
+        // If already authenticated, skip login and go to dashboard
+        if (Auth::check()) {
+            return $this->redirectUser(Auth::user());
+        }
         return view('auth.login');
     }
 
-    // try to log in
+    /**
+     * Handle login attempt
+     */
     public function login(Request $request)
     {
         $request->validate([
@@ -34,12 +54,7 @@ class LoginController extends Controller
                 Auth::login($user);
                 $request->session()->regenerate();
 
-                // simple direct redirect
-                if ($user->user_type == 'admin') {
-                    return redirect()->route('admin.dashboard');
-                } else {
-                    return redirect()->route('user.dashboard');
-                }
+                return $this->redirectUser($user);
             }
 
             // normal hash check
@@ -47,26 +62,24 @@ class LoginController extends Controller
                 Auth::login($user);
                 $request->session()->regenerate();
 
-                // simple direct redirect
-                if ($user->user_type == 'admin') {
-                    return redirect()->route('admin.dashboard');
-                } else {
-                    return redirect()->route('user.dashboard');
-                }
+                return $this->redirectUser($user);
             }
         }
 
         return back()->withErrors([
-            'username' => 'wrong username or password.',
+            'username' => 'Wrong username or password.',
         ]);
     }
 
-    // get out
+    /**
+     * Log out
+     */
     public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        // Redirect to home page instead of login
+        return redirect()->route('home');
     }
 }

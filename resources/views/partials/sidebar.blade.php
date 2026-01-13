@@ -1,5 +1,14 @@
 <div class="sidebar">
-    <ul class="nav flex-column mt-4">
+    <div class="sidebar-header px-4 py-4 d-flex align-items-center gap-3">
+        <div style="background: var(--srs-primary, #2563eb); padding: 8px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;">
+            <i class="fas fa-layer-group text-white fs-5"></i>
+        </div>
+        <div class="brand-text-container">
+            <h5 class="mb-0 fw-bold font-outfit text-white tracking-widest" style="font-size: 1.1rem;">SRS</h5>
+            <small class="text-secondary tracking-widest" style="font-size: 0.65rem; text-uppercase;">Lab Automation</small>
+        </div>
+    </div>
+    <ul class="nav flex-column mt-2">
         @if(auth()->user()->user_type == 'admin')
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
@@ -93,7 +102,7 @@
         position: fixed;
         left: 0;
         top: 0;
-        padding: 80px 20px 20px 20px;
+        padding: 20px 20px 20px 20px;
         z-index: 1000;
         font-family: 'Inter', sans-serif;
     }

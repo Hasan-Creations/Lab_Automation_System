@@ -57,8 +57,11 @@
 
     <nav class="navbar fixed-top bg-white shadow-sm" style="margin-left: 260px; height: 80px; z-index: 900;">
         <div class="container-fluid px-4">
-            <div class="d-flex align-items-center">
-                <h5 class="mb-0 fw-bold text-dark">Lab Automation System</h5>
+            <div class="d-flex align-items-center gap-2">
+                <div style="background: var(--nexus-indigo, #2563eb); padding: 5px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px;">
+                    <i class="fas fa-layer-group text-white" style="font-size: 0.9rem;"></i>
+                </div>
+                <h5 class="mb-0 fw-bold text-dark">SRS Lab Automation</h5>
             </div>
             <div class="d-flex align-items-center gap-3">
                 <div class="d-flex align-items-center gap-2">
