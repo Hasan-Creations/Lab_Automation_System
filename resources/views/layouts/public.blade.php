@@ -96,7 +96,7 @@
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item">
                         <a class="nav-link btn-login" href="{{ route('login') }}">
-                            Operator Login
+                            &nbsp; Login &nbsp;
                         </a>
                     </li>
                 </ul>

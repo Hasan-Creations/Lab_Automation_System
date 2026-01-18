@@ -30,7 +30,6 @@ class CpriController extends Controller
     {
         $request->validate([
             'batch_revision_id' => 'required|exists:batch_revisions,id',
-            'submission_date' => 'required|date',
             'remarks' => 'nullable|string'
         ]);
 
@@ -45,14 +44,14 @@ class CpriController extends Controller
 
             CpriSubmission::create([
                 'batch_revision_id' => $request->batch_revision_id,
-                'submission_date' => $request->submission_date,
+                'submission_date' => now(),
                 'remarks' => $request->remarks,
                 'status' => 'pending',
                 'submitted_by' => Auth::id()
             ]);
 
             // change status to pending cpri
-            $rev->status = 'CPRI_PENDING';
+            $rev->status = 'CPRI_PEND_EXEC';
             $rev->save();
 
             DB::commit();
@@ -70,8 +69,13 @@ class CpriController extends Controller
     {
         $item = CpriSubmission::with('revision.batch')->findOrFail($id);
 
+        // check if already finalized
+        if ($item->status != 'pending') {
+            return back()->with('error', 'this outcome has already been finalized and cannot be changed.');
+        }
+
         $request->validate([
-            'status' => 'required|in:pending,approved,rejected',
+            'status' => 'required|in:approved,rejected',
             'cpri_reference' => 'nullable|string'
         ]);
 
@@ -87,7 +91,7 @@ class CpriController extends Controller
             $new_status = match ($request->status) {
                 'approved' => 'CPRI_APPROVED',
                 'rejected' => 'CPRI_REJECTED',
-                default    => 'CPRI_PENDING'
+                default    => 'CPRI_PEND_EXEC'
             };
 
             $item->revision->update(['status' => $new_status]);
@@ -100,7 +104,7 @@ class CpriController extends Controller
 
             DB::commit();
 
-            return back()->with('success', "cpri updated to " . $request->status . " for " . $item->revision->batch->batch_code);
+            return back()->with('success', "cpri finalized as " . $request->status . " for " . $item->revision->batch->batch_code);
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->with('error', "failed to update cpri record.");

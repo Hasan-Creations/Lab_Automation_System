@@ -27,10 +27,6 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold text-secondary">Submission Date</label>
-                        <input type="date" name="submission_date" class="form-control" value="{{ now()->format('Y-m-d') }}" required>
-                    </div>
                     <div class="mb-4">
                         <label class="form-label small fw-bold text-secondary">Formal Remarks</label>
                         <textarea name="remarks" class="form-control" rows="3" placeholder="Reference notes for the submission portal..."></textarea>
@@ -87,9 +83,15 @@
                                 </code>
                             </td>
                             <td class="text-end pe-4">
+                                @if($submission->status == 'pending')
                                 <button class="btn btn-sm btn-outline-primary px-3 rounded-pill" data-bs-toggle="modal" data-bs-target="#updateModal{{ $submission->id }}">
                                     Update Outcome
                                 </button>
+                                @else
+                                <span class="badge bg-secondary bg-opacity-10 text-secondary px-3 py-1 border border-secondary border-opacity-25" style="font-size: 0.7rem;">
+                                    <i class="fas fa-lock me-1"></i> FINALIZED
+                                </span>
+                                @endif
                             </td>
                         </tr>
 
@@ -110,11 +112,14 @@
                                                 <small class="text-secondary">Revision {{ $submission->revision->revision_number }}</small>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label small fw-bold text-secondary">Current Outcome</label>
-                                                <select name="status" class="form-select" required>
-                                                    <option value="pending" {{ $submission->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                                                    <option value="approved" {{ $submission->status == 'approved' ? 'selected' : '' }}>Approved</option>
-                                                    <option value="rejected" {{ $submission->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                                <label class="form-label small fw-bold text-secondary">Final Outcome Selection</label>
+                                                <div class="alert alert-warning small p-2 mb-3 border-0" style="font-size: 0.75rem;">
+                                                    <i class="fas fa-exclamation-triangle me-1"></i> <strong>Critical:</strong> Setting this outcome is <strong>permanent</strong>. It cannot be reversed or edited once saved.
+                                                </div>
+                                                <select name="status" class="form-select border-warning" required>
+                                                    <option value="" disabled selected>Select final status...</option>
+                                                    <option value="approved">Final Approval</option>
+                                                    <option value="rejected">Formal Rejection</option>
                                                 </select>
                                             </div>
                                             <div class="mb-3">
