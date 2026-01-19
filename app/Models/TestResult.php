@@ -68,19 +68,23 @@ class TestResult extends Model
         });
     }
 
-    // build the 12 digit code for the srs report
+    // build the 12 digit code for the srs report - unique across all batches
     public static function makeSimpleId(BatchRevision $rev, $type_id): string
     {
         $type = TestType::findOrFail($type_id);
 
-        $p_code = str_pad($rev->batch->productType->prefix, 3, '0', STR_PAD_LEFT);
-        $r_num = str_pad(filter_var($rev->revision_number, FILTER_SANITIZE_NUMBER_INT), 2, '0', STR_PAD_LEFT);
-        $t_code = str_pad($type->test_code, 4, '0', STR_PAD_LEFT);
+        $p_code = str_pad($rev->batch->productType->prefix ?? 'GEN', 3, '0', STR_PAD_LEFT);
+        
+        // Revision numeric part (e.g. 01 from R01)
+        $r_num = str_pad(filter_var($rev->revision_number, FILTER_SANITIZE_NUMBER_INT) ?: '01', 2, '0', STR_PAD_LEFT);
+        
+        // Using batch revision ID to ensure uniqueness across different batches of same product
+        $b_id = str_pad($rev->id % 10000, 4, '0', STR_PAD_LEFT);
 
-        // check how many tests we already have
+        // check how many tests we already have in this revision to get sequence
         $count = TestResult::where('batch_revision_id', $rev->id)->count() + 1;
-        $seq = str_pad($count, 3, '0', STR_PAD_LEFT);
+        $seq = str_pad($count % 1000, 3, '0', STR_PAD_LEFT);
 
-        return substr($p_code . $r_num . $t_code . $seq, 0, 12);
+        return substr($p_code . $r_num . $b_id . $seq, 0, 12);
     }
 }

@@ -135,7 +135,7 @@ class TestController extends Controller
             return redirect()->route('user.dashboard')->with('success', $msg);
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', "failed to log test result.");
+            return back()->with('error', "critical: failed to log test. error: " . $e->getMessage());
         }
     }
 }

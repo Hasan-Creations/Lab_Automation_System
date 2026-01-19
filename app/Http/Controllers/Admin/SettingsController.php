@@ -28,10 +28,10 @@ class SettingsController extends Controller
             'email' => 'nullable|email',
             'user_type' => 'required|in:admin,tester',
             'password' => 'required|min:6',
-            'department_id' => 'required|exists:departments,id'
+            'department_id' => 'required_unless:user_type,admin|nullable|exists:departments,id'
         ]);
 
-        $dept = Department::findOrFail($request->department_id);
+        $dept = $request->department_id ? Department::find($request->department_id) : null;
 
         User::create([
             'name' => $request->full_name,
@@ -39,7 +39,7 @@ class SettingsController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'user_type' => $request->user_type,
-            'department' => $dept->name,
+            'department' => $dept ? $dept->name : 'N/A',
             'department_id' => $request->department_id,
             'password' => Hash::make($request->password),
             'is_active' => true
@@ -48,25 +48,39 @@ class SettingsController extends Controller
         return back()->with('success', 'user added!');
     }
 
-    // change user role or dept
+    // change user role, dept, or credentials
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
 
         $request->validate([
+            'full_name' => 'required',
+            'username' => 'required|unique:users,username,' . $id,
+            'email' => 'nullable|email',
             'user_type' => 'required|in:admin,tester',
-            'department_id' => 'required|exists:departments,id'
+            'department_id' => 'required_unless:user_type,admin|nullable|exists:departments,id',
+            'password' => 'nullable|min:6'
         ]);
 
-        $dept = Department::findOrFail($request->department_id);
+        $dept = $request->department_id ? Department::find($request->department_id) : null;
 
-        $user->update([
+        $data = [
+            'full_name' => $request->full_name,
+            'name' => $request->full_name, // sync old name field
+            'username' => $request->username,
+            'email' => $request->email,
             'user_type' => $request->user_type,
             'department' => $dept->name,
             'department_id' => $request->department_id
-        ]);
+        ];
 
-        return back()->with('success', 'updated.');
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
+
+        return back()->with('success', 'User updated successfully!');
     }
 
     // delete someone
